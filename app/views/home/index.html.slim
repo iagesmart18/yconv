@@ -1,0 +1,51 @@
+#main.main.app
+#subscribe.cta-2
+  .container ng-app="app" ng-controller="ConvertController"
+    .row.text-center
+      .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+        .cta-2-inner
+          h1.wow.fadeInDown data-wow-delay="0.1s"  Download your favorite YouTube or Vimeo videos.
+          p.wow.fadeInDown data-wow-delay="0.2s"  Paste a Youtube or Vimeo link in the box below.
+          .form.wow.fadeInDown data-wow-delay="0.3s"
+            = form_tag home_convert_path, method: 'post', class: 'subscribe-form wow zoomIn' do
+              input.mail autocomplete="off" name="email" placeholder="https://www.youtube.com/watch?v=qs3XoTc_R9o" type="email"
+              input.submit-button type="submit" value="Convert" ng-click="convert($event)"
+            .success-message
+            .error-message
+        .progress ng-class="active ? 'active' : 'inactive'"
+          .progress-bar.progress-bar-striped.active aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style="width:40%" 
+            | 40%
+.footer-sm.wow.fadeIn
+  .container
+    .row.text-center
+      .col-sm-6.col-sm-offset-3
+        .footer-inner
+          .footer-img
+            h1
+              | Pilot
+              sup TM
+            p
+              | Cu qui probo malorum saperet. Ne admodum apeirian iracundia usu, eam cu agam ludus,
+              | eum munere accusam molestie ut. Alienum percipitur ne est, pri quando iriure ad.
+            p &copy; 2017 YDirection Themes by IOThemes
+        .footer-social
+          ul
+            li
+              a href="#"
+                i.ion-social-youtube
+            li
+              a href="#"
+                i.ion-social-linkedin
+            li
+              a href="#"
+                i.ion-social-instagram-outline
+            li
+              a href="#"
+                i.ion-social-twitter
+/! Scroll To Top
+a#back-top.back-to-top.page-scroll href="#main"
+  i.ion-ios-arrow-up
+/! Scroll To Top Ends
+/! Main
+/! Wrapper
+

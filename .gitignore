@@ -1,0 +1,19 @@
+!.keep
+*.DS_Store
+*.swo
+*.swp
+/.bundle
+/.env
+/.foreman
+/coverage/*
+/db/*.sqlite3
+/log/*
+/public/system
+/public/assets/*
+/public/system/*
+/tags
+/tmp/*
+/app/config.codekit
+# Ignore application configuration
+/config/application.yml
+/config/database.yml
