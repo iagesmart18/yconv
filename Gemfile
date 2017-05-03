@@ -25,6 +25,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
 end
 
 group :test do
