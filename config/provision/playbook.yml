@@ -9,8 +9,11 @@
     include: 'vars.yml'
     home: '/home/{{ user }}'
     app_name: 'yconv'
+    monit_interval_in_seconds: 10
+    monit_conf_main: "configs/monit.conf"
     application: '{{ home }}/{{ app_name }}'
     shared: '{{ application }}/shared'
+    working_path: '{{ application }}/current'
 
   tasks:
     - name: 'user | install python'
@@ -69,6 +72,8 @@
         - 'libmagickwand-dev'
         - 'nodejs'
         - 'htop'
+        - 'zsh'
+        - 'monit'
       notify: Restart Nginx
       notify: Restart PostgreSQL
       notify: Restart Redis
@@ -120,6 +125,12 @@
       tags:
         - app
 
+    - name: 'monit | copy config'
+      template: 'src=configs/monit.conf dest=/etc/monit/conf.d/{{ app_name }}'
+      notify: Restart Monit
+      tags:
+        - app
+
   roles:
     - role: rvm_io.ruby
       rvm1_rubies: ['ruby-2.3.1']
@@ -136,4 +147,7 @@
 
    - name: Restart Redis
      service: name=redis state=restarted
+
+   - name: Restart Monit
+     service: name=monit state=restarted
 
