@@ -1,0 +1,7 @@
+production:
+  adapter: postgresql
+  encoding: utf8
+  user: postgres
+  host: localhost
+  pool: 8
+  database: {{ app_name }}_production

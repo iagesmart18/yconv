@@ -17,4 +17,6 @@
 # Ignore application configuration
 /config/application.yml
 /config/database.yml
-/config/provision/**
+/config/provision/keys/**
+/config/provision/vars.yml
+/config/provision/configs/secrets.yml

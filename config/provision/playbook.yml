@@ -1,0 +1,139 @@
+---
+- hosts: production
+  remote_user: root
+  gather_facts: no
+
+  vars:
+    rvm_default_ruby_version: '2.3.1'
+    user: 'app'
+    include: 'vars.yml'
+    home: '/home/{{ user }}'
+    app_name: 'yconv'
+    application: '{{ home }}/{{ app_name }}'
+    shared: '{{ application }}/shared'
+
+  tasks:
+    - name: 'user | install python'
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      tags:
+        - user
+
+    - name: 'user | create'
+      user:
+        name: app
+        groups: sudo
+        password: "{{ '{{ user_password }}' | password_hash('sha512') }}"
+        generate_ssh_key: yes
+      tags:
+        - user
+
+    - name: 'user | create ssh-key'
+      authorized_key:
+        user: app
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      tags:
+        - user
+
+    - name: 'user | passwordless'
+      raw: 'echo "{{ user }} ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)'
+      tags:
+        - user
+
+    - name: 'user | show ssh_key.pub'
+      raw: 'cat /home/{{ user }}/.ssh/id_rsa.pub'
+      register: ssh_pub
+      tags:
+        - user
+
+    - debug: "msg=[{{ ssh_pub.stdout }}]"
+      tags:
+        - user
+
+    - name: install dependencies
+      action: 'apt pkg={{ item }}'
+      with_items:
+        - 'build-essential'
+        - 'libssl-dev'
+        - 'libyaml-dev'
+        - 'libreadline6-dev'
+        - 'zlib1g-dev'
+        - 'libcurl4-openssl-dev'
+        - 'git'
+        - 'nginx'
+        - 'redis-server'
+        - 'postgresql-9.5'
+        - 'postgresql-contrib'
+        - 'libpq-dev'
+        - 'imagemagick'
+        - 'libmagickwand-dev'
+        - 'nodejs'
+        - 'htop'
+      notify: Restart Nginx
+      notify: Restart PostgreSQL
+      notify: Restart Redis
+      tags:
+        - app
+
+    - name: 'nginx | copy config'
+      template: 'src=configs/nginx.conf dest=/etc/nginx/sites-enabled/{{ app_name }}.conf owner=root group=root mode=0644'
+      notify: Restart Nginx
+      tags:
+        - app
+
+    - name: 'nginx | remove default conf'
+      action: 'file path={{ item }}default state=absent'
+      with_items:
+        - /etc/nginx/sites-enabled/
+        - /etc/nginx/sites-available/
+      ignore_errors: yes
+      tags:
+        - app
+
+
+    - name: 'nginx | symlink'
+      command: 'ln -s /etc/nginx/sites-enabled/{{ app_name }}.conf /etc/nginx/sites-available/{{ app_name }}.conf'
+      ignore_errors: yes
+      tags:
+        - app
+
+    - name: 'set postgres auth'
+      copy: 'src=configs/pg_hba.conf dest=/etc/postgresql/9.5/main/pg_hba.conf owner=postgres group=postgres mode=0644'
+      notify: Restart PostgreSQL
+      tags:
+        - app
+
+    - name: 'ensure that shared directory exists'
+      file: 'path={{ shared }}/config state=directory'
+      become: yes
+      become_user: '{{ user }}'
+      tags:
+        - app
+
+    - name: 'copy secrets.yml/database.yml'
+      action: 'template src=configs/{{ item }} dest={{ shared }}/config/{{ item }}'
+      become: yes
+      become_user: '{{ user }}'
+      with_items:
+        - database.yml
+        - secrets.yml
+      tags:
+        - app
+
+  roles:
+    - role: rvm_io.ruby
+      rvm1_rubies: ['ruby-2.3.1']
+      rvm1_user: app
+      tags:
+        - app
+
+  handlers:
+   - name: Restart Nginx
+     service: name=nginx state=restarted
+
+   - name: Restart PostgreSQL
+     service: name=postgresql state=restarted
+
+   - name: Restart Redis
+     service: name=redis state=restarted
+
