@@ -14,7 +14,15 @@ class YoutubeDl
   end
 
   def parse_line line
-    
+    if line =~ /download/
+      progress = line.match /([\d.]+)%/
+      content.update! progress: progress[1].to_f
+    end
+
+    if line =~ /Destination/
+      human_name = line.match /Destination: (.*)/
+      content.update! human_name: human_name[1]
+    end
   end
 
   def content
