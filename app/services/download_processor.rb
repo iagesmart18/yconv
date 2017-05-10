@@ -1,5 +1,4 @@
-#require_relative 'youtube_dl.rb'; youtube = YoutubeDl.new
-class YoutubeDl
+class DownloadProcessor
   attr_accessor :content
   def initialize content
     @content = content
@@ -19,7 +18,6 @@ class YoutubeDl
 
   def parse_line line
     if line =~ /download/
-      puts "[#{line}]"
       parse_progress line
       parse_file_name line
     end
