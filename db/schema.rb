@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510124418) do
+ActiveRecord::Schema.define(version: 20170510145228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170510124418) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.string   "url"
+    t.string   "state"
     t.index ["name"], name: "index_contents_on_name", using: :btree
   end
 

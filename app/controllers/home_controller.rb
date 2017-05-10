@@ -10,4 +10,8 @@ class HomeController < ApplicationController
 
     render json: downloader.response
   end
+
+  def poll
+    @content = Contnent.where id: params[:ids]
+  end
 end
