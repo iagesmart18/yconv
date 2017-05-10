@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509154415) do
+ActiveRecord::Schema.define(version: 20170510095616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,14 @@ ActiveRecord::Schema.define(version: 20170509154415) do
     t.text     "human_name"
     t.string   "format"
     t.integer  "parent_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "status"
-    t.decimal  "progress",   precision: 4, scale: 2
+    t.decimal  "progress",                precision: 5, scale: 2
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.index ["name"], name: "index_contents_on_name", using: :btree
   end
 

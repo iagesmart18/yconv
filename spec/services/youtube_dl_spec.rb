@@ -19,11 +19,11 @@ describe YoutubeDl do
     end
   end
 
-  context 'parse line description', :focus do
-    let(:line) { '[download] Destination: NaVi vs Secret _ DreamLeague Season 7-zEWzdYLw6iY.mp4' }
-    before { service.parse_line line }
+  context 'parse line filename', :focus do
+    let(:line) { '[download] /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.mp4 has already been downloaded' }
+    let(:result) { service.parse_file_name line }
     it do
-      expect(content.progress).to eq 60.8
+      expect(result).to eq '/Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.mp4'
     end
   end
 end
