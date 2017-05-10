@@ -1,6 +1,6 @@
 #main.main.app
 #subscribe.cta-2
-  .container ng-app="app" ng-controller="ConvertController"
+  .container ng-app="app" ng-controller="ConvertController" ng-init="init('#{home_convert_path}')"
     .row.text-center
       .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
         .cta-2-inner
@@ -8,7 +8,7 @@
           p.wow.fadeInDown data-wow-delay="0.2s"  Paste a Youtube or Vimeo link in the box below.
           .form.wow.fadeInDown data-wow-delay="0.3s"
             = form_tag home_convert_path, method: 'post', class: 'subscribe-form wow zoomIn' do
-              input.mail autocomplete="off" name="email" placeholder="https://www.youtube.com/watch?v=qs3XoTc_R9o" type="email"
+              input.mail autocomplete="off" name="email" placeholder="https://www.youtube.com/watch?v=qs3XoTc_R9o" type="text" ng-model="video_url"
               input.submit-button type="submit" value="Convert" ng-click="convert($event)"
             .success-message
             .error-message

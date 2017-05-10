@@ -1,12 +1,13 @@
 #require_relative 'youtube_dl.rb'; youtube = YoutubeDl.new
 class YoutubeDl
-  def initialize url='https://www.youtube.com/watch?v=a4LVgdGN_8g'
-    @url = url
+  attr_accessor :content
+  def initialize content
+    @content = content
   end
 
   def perform
     path = File.join Rails.root, 'public', 'content', '%(id)s_%(title)s.%(ext)s'
-    @cmd = "youtube-dl --newline --restrict-filenames -o '#{path}' #{@url}"
+    @cmd = "youtube-dl --newline --restrict-filenames -o '#{path}' #{@content.url}"
     puts @cmd
     IO.popen(@cmd) do |stdout|
       stdout.each do |line|
@@ -18,24 +19,16 @@ class YoutubeDl
 
   def parse_line line
     if line =~ /download/
+      puts "[#{line}]"
       parse_progress line
       parse_file_name line
-    end
-  end
-
-  def content
-    @content ||= begin
-      params = Rack::Utils.parse_query URI(@url).query
-      name = params['v']
-      content = Content.find_or_create_by name: name
-      content
     end
   end
 
   def parse_file_name line
     if line.include? Rails.root.to_s
       match = line.match /(#{Rails.root.to_s}[^ ]*)/
-      @filename = match[1]
+      @filename = match[1].strip
     end
   end
 
@@ -48,6 +41,7 @@ class YoutubeDl
 
   def save_filename
     raise "No Filename #{@cmd}" unless @filename
+    puts "filename: [#{@filename}]"
     content.attachment = File.open @filename
     content.save!
   end
