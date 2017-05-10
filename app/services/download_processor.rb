@@ -1,5 +1,4 @@
-#require_relative 'youtube_dl.rb'; youtube = YoutubeDl.new
-class YoutubeDl
+class DownloadProcessor
   attr_accessor :content
   def initialize content
     @content = content

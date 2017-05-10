@@ -1,6 +1,7 @@
-describe YoutubeDl do
+describe DownloadProcessor do
   let(:url) { 'https://www.youtube.com/watch?v=a4LVgdGN_8g' }
-  let(:service) { YoutubeDl.new url }
+  let(:content) { create :content, url: url }
+  let(:service) { DownloadProcessor.new content }
   let(:content) { Content.first }
 
   context 'create content model' do
