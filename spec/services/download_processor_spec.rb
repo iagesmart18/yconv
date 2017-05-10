@@ -20,7 +20,7 @@ describe DownloadProcessor do
     end
   end
 
-  context 'parse line filename', :focus do
+  context 'parse line filename' do
     let(:line) { '[download] /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.mp4 has already been downloaded' }
     let(:result) { service.parse_file_name line }
     it do
