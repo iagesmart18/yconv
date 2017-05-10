@@ -18,7 +18,6 @@ class DownloadProcessor
 
   def parse_line line
     if line =~ /download/
-      puts "[#{line}]"
       parse_progress line
       parse_file_name line
     end

@@ -8,6 +8,6 @@ class HomeController < ApplicationController
       ContentDownloader.perform_async content.id
     end
 
-    render json: downloader.msg
+    render json: downloader.response
   end
 end

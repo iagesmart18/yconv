@@ -1,5 +1,6 @@
 app.controller 'ConvertController', ['$scope', ($scope) ->
   $scope.active = false
+  $scope.pollIds = []
   $scope.init = (url) ->
     $scope.url = url
 

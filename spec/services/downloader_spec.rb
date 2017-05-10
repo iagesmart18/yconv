@@ -4,7 +4,6 @@ describe Downloader do
   context 'not url' do
     let(:url) { 'not url' }
     it do
-      binding.pry
       expect(service.valid?).to be_falsy
     end
   end

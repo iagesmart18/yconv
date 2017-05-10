@@ -50,6 +50,7 @@ class Downloader
     @content ||= begin
       @content = Content.find_or_create_by name: name
       @content.update! url: url
+      @content
     end
   end
 
