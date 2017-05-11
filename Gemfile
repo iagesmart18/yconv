@@ -21,6 +21,7 @@ gem 'angularjs-rails'
 gem 'gon'
 gem "paperclip", "~> 5.0.0"
 gem 'aasm'
+gem "figaro"
 
 group :development, :test do
   gem 'byebug', platform: :mri

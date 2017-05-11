@@ -117,13 +117,14 @@
       tags:
         - app
 
-    - name: 'copy secrets.yml/database.yml'
+    - name: 'copy secrets.yml/database.yml/application.yml'
       action: 'template src=configs/{{ item }} dest={{ shared }}/config/{{ item }}'
       become: yes
       become_user: '{{ user }}'
       with_items:
         - database.yml
         - secrets.yml
+        - application.yml
       tags:
         - app
 

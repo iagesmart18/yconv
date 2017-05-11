@@ -8,7 +8,7 @@ class DownloadProcessor
     return unless content.may_download?
     content.download
     path = File.join Rails.root, 'public', 'content', '%(id)s_%(title)s.%(ext)s'
-    @cmd = "youtube-dl --newline --restrict-filenames -o '#{path}' #{@content.url}"
+    @cmd = "#{ENV['command']} --newline --restrict-filenames -o '#{path}' #{@content.url}"
     puts @cmd
     IO.popen(@cmd) do |stdout|
       stdout.each do |line|
