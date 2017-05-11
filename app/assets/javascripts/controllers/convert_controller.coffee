@@ -1,7 +1,8 @@
 app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $http, $timeout) ->
   $scope.active = false
   $scope.pollIds = []
-  loadTime = 1000
+  $scope.pollActive = false
+  loadTime = 2000
   errorCount = 0
   loadPromise = null
 
@@ -14,21 +15,34 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $ht
     $http.post(
       $scope.poll_url,
         ids: $scope.pollIds
-    ).then( (resp) ->
-        console.log 'success'
-        console.log resp
-    )
+    ).then($scope.pollSuccess)
+
+  cancelPoll = ->
+    $timeout.cancel loadPromise
 
   $scope.convert = ($event) ->
     $event.preventDefault()
     $scope.active = true
-    console.log $scope.video_url
-    $scope.video_url = 'https://www.youtube.com/watch?v=a4LVgdGN_8g'
+    # $scope.video_url = 'https://www.youtube.com/watch?v=a4LVgdGN_8g'
     $http.post(
       $scope.url,
         url: $scope.video_url
-      ).then( (resp) ->
-        console.log resp.data
-      )
+      ).then($scope.convertResponse)
+
+  $scope.convertResponse = (resp) ->
+    data = resp.data
+    if data.errors
+      alert(data.errors)
+    else
+      $scope.pollIds.push data.content_id
+      cancelPoll()
+      loadPromise = $timeout poll, loadTime
+
+  $scope.pollSuccess = (resp) ->
+    data = resp.data
+    $('.poll').html data.poll_template
+    if data.need_continue
+      cancelPoll()
+      loadPromise = $timeout poll, loadTime
 ]
 

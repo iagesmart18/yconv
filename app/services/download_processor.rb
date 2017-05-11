@@ -5,6 +5,7 @@ class DownloadProcessor
   end
 
   def perform
+    content.download
     path = File.join Rails.root, 'public', 'content', '%(id)s_%(title)s.%(ext)s'
     @cmd = "youtube-dl --newline --restrict-filenames -o '#{path}' #{@content.url}"
     puts @cmd
@@ -14,6 +15,7 @@ class DownloadProcessor
       end
     end
     save_filename
+    Converter.perform_async content.id
   end
 
   def parse_line line

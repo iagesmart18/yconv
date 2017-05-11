@@ -13,7 +13,7 @@ class Content < ApplicationRecord
       transitions from: :init, to: :downloading
     end
 
-    event :contvert do
+    event :convert do
       transitions from: :downloading, to: :converting
     end
 

@@ -12,6 +12,6 @@ class HomeController < ApplicationController
   end
 
   def poll
-    @content = Contnent.where id: params[:ids]
+    @contents = Content.where id: params[:ids]
   end
 end

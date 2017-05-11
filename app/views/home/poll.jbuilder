@@ -1,9 +1,11 @@
-json.array! @contents do |content|
-  json.id content.id
-  json.url content.url
-  json.name content.name
-  json.state content.status
-  json.progress content.progress
+json.contents do |json|
+  json.array! @contents do |content|
+    json.id content.id
+    json.url content.url
+    json.name content.name
+    json.state content.status
+    json.progress content.progress
+  end
 end
 
 json.poll_template  render_to_string partial: 'contents', locals: { contents: @contents }
