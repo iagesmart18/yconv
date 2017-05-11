@@ -74,6 +74,8 @@
         - 'htop'
         - 'zsh'
         - 'monit'
+        - 'python-pip'
+        - 'python-setuptools'
       notify: Restart Nginx
       notify: Restart PostgreSQL
       notify: Restart Redis
@@ -128,6 +130,14 @@
     - name: 'monit | copy config'
       template: 'src=configs/monit.conf dest=/etc/monit/conf.d/{{ app_name }}'
       notify: Restart Monit
+      tags:
+        - app
+
+    - name: 'youtube-dl | install'
+      pip:
+        name: youtube-dl
+      become: yes
+      become_user: '{{ user }}'
       tags:
         - app
 

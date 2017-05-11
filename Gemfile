@@ -32,6 +32,7 @@ group :development, :test do
   gem 'capistrano-rvm'
   gem "letter_opener"
   gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do

@@ -1,5 +1,6 @@
 server "107.170.6.47", user: "app", roles: %w{web app db}
 set :branch, "master"
+set :pty,  false
 
 
 
