@@ -1,14 +1,15 @@
-table.table
-  tbody
-    - contents.each do |content|
-      tr
-        td
-          a href="#{content.url}" = content.url
-        td
-          .progress
-            .progress-bar.progress-bar-striped aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style="width:#{content.progress}%" = "#{content.progress}%"
-        td = content.state
-        td
-          - content.attachments.each do |attachment|
-            - if attachment.file.present?
-              a href="#{attachment.file.url}" download="" = attachment.format
+.panel
+  table.table
+    tbody
+      - contents.each do |content|
+        tr
+          td
+            a href="#{content.url}" = content.url
+          td
+            .progress
+              .progress-bar.progress-bar-striped aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style="width:#{content.progress}%" = "#{content.progress}%"
+          td = content.state
+          td
+            - content.attachments.each do |attachment|
+              - if attachment.file.present?
+                a href="#{attachment.file.url}" download="" = attachment.format
