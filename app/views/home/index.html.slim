@@ -12,9 +12,17 @@
                 input.url-input.form-control autocomplete="off" name="email" placeholder="https://www.youtube.com/watch?v=qs3XoTc_R9o" type="text" ng-model="video_url"
                 span.input-group-btn
                   button.btn.btn-primary.submit-button type="submit" ng-click="convert($event)" Convert
-            .success-message
-            .error-message
+    .row.text-center
+      .col-md-8.col-md-offset-2
         .poll
+          .panel
+            = render partial: 'contents', locals: { contents: Content.all  }
+
+    / .row
+      / .col-md-8.col-md-offset-2
+        / .panel.panel-default
+          / .panel-heading Latest
+          / = render partial: 'contents', locals: { contents: Content.all  }
 .footer-sm.wow.fadeIn
   .container
     .row.text-center
@@ -29,19 +37,19 @@
               | eum munere accusam molestie ut. Alienum percipitur ne est, pri quando iriure ad.
             p &copy; 2017 YDirection Themes by IOThemes
         .footer-social
-          ul
-            li
-              a href="#"
-                i.ion-social-youtube
-            li
-              a href="#"
-                i.ion-social-linkedin
-            li
-              a href="#"
-                i.ion-social-instagram-outline
-            li
-              a href="#"
-                i.ion-social-twitter
+          / ul
+            / li
+              / a href="#"
+                / i.ion-social-youtube
+            / li
+              / a href="#"
+                / i.ion-social-linkedin
+            / li
+              / a href="#"
+                / i.ion-social-instagram-outline
+            / li
+              / a href="#"
+                / i.ion-social-twitter
 /! Scroll To Top
 a#back-top.back-to-top.page-scroll href="#main"
   i.ion-ios-arrow-up

@@ -15,6 +15,7 @@ class DownloadProcessor
       end
     end
     save_filename
+    content.save!
     Converter.perform_async content.id
   end
 
@@ -42,7 +43,9 @@ class DownloadProcessor
   def save_filename
     raise "No Filename #{@cmd}" unless @filename
     puts "filename: [#{@filename}]"
-    content.attachment = File.open @filename
-    content.save!
+    ext = File.extname @filename
+    attachment = content.attachments.find_or_create_by(format: ext)
+    attachment.file = File.open @filename
+    attachment.save!
   end
 end

@@ -10,25 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510145228) do
+ActiveRecord::Schema.define(version: 20170511122610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "content_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "format"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["content_id"], name: "index_attachments_on_content_id", using: :btree
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string   "name"
     t.text     "human_name"
-    t.string   "format"
-    t.integer  "parent_id"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "status"
-    t.decimal  "progress",                precision: 5, scale: 2
-    t.string   "attachment_file_name"
-    t.string   "attachment_content_type"
-    t.integer  "attachment_file_size"
-    t.datetime "attachment_updated_at"
+    t.decimal  "progress",   precision: 5, scale: 2
     t.string   "url"
     t.string   "state"
     t.index ["name"], name: "index_contents_on_name", using: :btree
