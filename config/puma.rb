@@ -1,4 +1,3 @@
-if ENV.fetch("RAILS_ENV") == 'prouduction'
   app_dir = File.expand_path("../..", __FILE__)
   shared_dir = "#{app_dir}/shared"
 
@@ -19,4 +18,3 @@ if ENV.fetch("RAILS_ENV") == 'prouduction'
   activate_control_app
 
   plugin :tmp_restart
-end
