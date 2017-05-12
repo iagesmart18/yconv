@@ -1,4 +1,4 @@
-window.app = angular.module('app', [
+window.app = angular.module('app', ['ngToast'
 ])
 
 window.app.config ["$httpProvider", ($httpProvider) ->

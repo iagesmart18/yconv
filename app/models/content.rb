@@ -8,6 +8,11 @@ class Content < ApplicationRecord
     state :converting
     state :processed
 
+
+    event :rollback do
+      transitions from: :downloading, to: :init
+    end
+
     event :download do
       transitions from: :init, to: :downloading
       transitions from: :downloading, to: :downloading

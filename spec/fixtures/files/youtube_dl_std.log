@@ -1,0 +1,42 @@
+[youtube] a4LVgdGN_8g: Downloading webpage
+[youtube] a4LVgdGN_8g: Downloading video info webpage
+[youtube] a4LVgdGN_8g: Extracting video information
+[youtube] a4LVgdGN_8g: Downloading MPD manifest
+WARNING: Requested formats are incompatible for merge and will be merged into mkv.
+[download] Destination: /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.f247.webm
+[download]   0.0% of 14.38MiB at 186.67KiB/s ETA 01:19
+[download]   0.0% of 14.38MiB at 529.56KiB/s ETA 00:27
+[download]   0.0% of 14.38MiB at  1.16MiB/s ETA 00:12
+[download]   0.1% of 14.38MiB at  2.42MiB/s ETA 00:05
+[download]   0.2% of 14.38MiB at  1.95MiB/s ETA 00:07
+[download]   0.4% of 14.38MiB at  2.47MiB/s ETA 00:05
+[download]   0.9% of 14.38MiB at  2.53MiB/s ETA 00:05
+[download]   1.7% of 14.38MiB at  2.93MiB/s ETA 00:04
+[download]   3.5% of 14.38MiB at  2.62MiB/s ETA 00:05
+[download]   6.9% of 14.38MiB at  3.13MiB/s ETA 00:04
+[download]  13.9% of 14.38MiB at  2.93MiB/s ETA 00:04
+[download]  27.8% of 14.38MiB at  2.74MiB/s ETA 00:03
+[download]  45.7% of 14.38MiB at  2.12MiB/s ETA 00:03
+[download]  56.6% of 14.38MiB at  1.95MiB/s ETA 00:03
+[download]  66.8% of 14.38MiB at  1.96MiB/s ETA 00:02
+[download]  80.7% of 14.38MiB at  1.94MiB/s ETA 00:01
+[download]  93.5% of 14.38MiB at  1.93MiB/s ETA 00:00
+[download] 100.0% of 14.38MiB at  1.92MiB/s ETA 00:00
+[download] 100% of 14.38MiB in 00:07
+[download] Destination: /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.f140.m4a
+[download]   0.0% of 2.88MiB at 181.26KiB/s ETA 00:16
+[download]   0.1% of 2.88MiB at 513.61KiB/s ETA 00:05
+[download]   0.2% of 2.88MiB at  1.12MiB/s ETA 00:02
+[download]   0.5% of 2.88MiB at  2.30MiB/s ETA 00:01
+[download]   1.1% of 2.88MiB at 618.49KiB/s ETA 00:04
+[download]   2.1% of 2.88MiB at 682.09KiB/s ETA 00:04
+[download]   4.3% of 2.88MiB at 863.05KiB/s ETA 00:03
+[download]   8.7% of 2.88MiB at  1.19MiB/s ETA 00:02
+[download]  17.4% of 2.88MiB at  1.51MiB/s ETA 00:01
+[download]  34.7% of 2.88MiB at  1.82MiB/s ETA 00:01
+[download]  69.5% of 2.88MiB at  1.92MiB/s ETA 00:00
+[download] 100.0% of 2.88MiB at  1.95MiB/s ETA 00:00
+[download] 100% of 2.88MiB in 00:01
+[ffmpeg] Merging formats into "/Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.mkv"
+Deleting original file /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.f247.webm (pass -k to keep)
+Deleting original file /Users/gingray/web/jessica_williams/yconv/public/content/a4LVgdGN_8g_Elon_Musk_gives_advice_to_entrepreneurs_04.04.2014_in_Russian.f140.m4a (pass -k to keep)

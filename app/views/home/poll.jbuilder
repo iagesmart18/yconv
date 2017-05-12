@@ -11,6 +11,8 @@ end
 json.poll_template  render_to_string partial: 'contents', locals: { contents: @contents }
 
 json.need_continue true
+json.errors @contents.select { |content| !content.error_msg.blank? }
+                     .map { |content| content.error_msg }
 
 if @contents.all? { |item| item.processed? }
   json.need_continue false

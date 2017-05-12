@@ -16,4 +16,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require angular
+//= require angular-sanitize
+//= require angular-animate
+//= require ngtoast
 //= require_tree .

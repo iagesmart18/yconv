@@ -1,4 +1,4 @@
-app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $http, $timeout) ->
+app.controller 'ConvertController', ['$scope', '$http', '$timeout', 'ngToast', ($scope, $http, $timeout, ngToast) ->
   $scope.active = false
   $scope.pollIds = []
   $scope.pollActive = false
@@ -9,7 +9,6 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $ht
   $scope.init = (url, poll_url) ->
     $scope.url = url
     $scope.poll_url = poll_url
-
 
   poll = ->
     $http.post(
@@ -32,7 +31,9 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $ht
   $scope.convertResponse = (resp) ->
     data = resp.data
     if data.errors
-      alert(data.errors)
+      ngToast.create
+        className: 'danger'
+        content: data.errors
     else
       $scope.pollIds.push data.content_id
       cancelPoll()
@@ -40,7 +41,13 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', ($scope, $ht
 
   $scope.pollSuccess = (resp) ->
     data = resp.data
-    $('.poll').html data.poll_template
+    if data.errors.length > 0
+      ngToast.create
+        className: 'danger'
+        content: data.errors
+      cancelPoll()
+    else
+      $('.poll').html data.poll_template
     if data.need_continue
       cancelPoll()
       loadPromise = $timeout poll, loadTime

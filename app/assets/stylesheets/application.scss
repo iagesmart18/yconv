@@ -2,8 +2,9 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "ngtoast";
 @import "home";
 @import "blocks/b-bar.sass";
 @import "blocks/b-form.sass";
 @import "blocks/b-table.sass";
-
+@import "blocks/b-toast.sass";
