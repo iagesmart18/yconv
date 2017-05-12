@@ -22,7 +22,7 @@ class DownloadProcessor
 
   def execute &block
     path = File.join Rails.root, 'public', 'content', '%(id)s_%(title)s.%(ext)s'
-    @cmd = "#{ENV['command']} --newline --restrict-filenames -o '#{path}' #{content.url}"
+    @cmd = "#{ENV['command']} --newline --restrict-filenames -f 'bestvideo[ext=mp4]' -o '#{path}' #{content.url}"
     puts @cmd
     IO.popen(@cmd) do |stdout|
       stdout.each do |line|
