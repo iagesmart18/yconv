@@ -127,6 +127,7 @@
         - application.yml
       tags:
         - app
+        - configs
 
     - name: 'monit | copy config'
       template: 'src=configs/monit.conf dest=/etc/monit/conf.d/{{ app_name }}'
