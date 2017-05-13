@@ -32,10 +32,8 @@ class DownloadProcessor
   end
 
   def parse_line line
-    # if line =~ /download/
-      parse_progress line
-      parse_file_name line
-    # end
+    parse_progress line
+    parse_file_name line
   end
 
   def parse_file_name line
@@ -58,9 +56,11 @@ class DownloadProcessor
     raise "No Filename #{@cmd}" unless filename
     puts "filename: [#{filename}]"
     ext = File.extname filename
+    file = File.open filename
     content.source_filename = filename
+    content.source_file_size = file.size
     attachment = content.attachments.find_or_create_by(format: ext)
-    attachment.file = File.open filename
+    attachment.file = file
     attachment.save!
     content.save!
   end

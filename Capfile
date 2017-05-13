@@ -9,6 +9,7 @@ require "capistrano/rails/migrations"
 require 'capistrano/puma'
 require 'capistrano/puma/jungle'
 require 'capistrano/sidekiq'
+require "whenever/capistrano"
 # require 'capistrano/sidekiq/monit'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

@@ -3,4 +3,5 @@ production:
 
 production:
   command: '/home/app/.local/bin/youtube-dl'
+  max_content_size: 10737418240
 

@@ -2,6 +2,8 @@ class Content < ApplicationRecord
   include AASM
   has_many :attachments, dependent: :destroy
 
+  after_destroy :remove_source_file
+
   aasm column: :state do
     state :init, initial: true
     state :downloading
@@ -26,6 +28,21 @@ class Content < ApplicationRecord
     event :finish  do
       transitions from: :converting, to: :processed
       transitions from: :downloading, to: :processed
+    end
+  end
+
+  def total_file_size
+    attachments.map do |attachment|
+      return attachment.file.size if attachment.file.present?
+      0
+    end
+  end
+
+  private
+
+  def remove_source_file
+    if File.exist? source_filename
+      File.delete source_filename
     end
   end
 

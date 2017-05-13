@@ -22,6 +22,8 @@ gem 'gon'
 gem "paperclip", "~> 5.0.0"
 gem 'aasm'
 gem "figaro"
+gem "font-awesome-rails"
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'byebug', platform: :mri
