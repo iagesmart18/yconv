@@ -3,6 +3,7 @@ class Content < ApplicationRecord
   has_many :attachments, dependent: :destroy
 
   after_destroy :remove_source_file
+  default_scope { order(created_at: :desc) }
 
   aasm column: :state do
     state :init, initial: true

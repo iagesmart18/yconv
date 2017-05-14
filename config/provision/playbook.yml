@@ -143,6 +143,25 @@
       tags:
         - app
 
+    - name: 'ffmpeg | add repo'
+      apt_repository:
+        repo: 'ppa:jonathonf/ffmpeg-3'
+        state: present
+      tags:
+        - app
+        - ffmpeg
+
+    - name: 'ffmpeg | install'
+      action: 'apt pkg={{ item }}'
+      with_items:
+        - 'ffmpeg'
+        - 'libav-tools'
+        - 'x264'
+        - 'x265'
+      tags:
+        - app
+        - ffmpeg
+
   roles:
     - role: rvm_io.ruby
       rvm1_rubies: ['ruby-2.3.1']
