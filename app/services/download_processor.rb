@@ -21,7 +21,7 @@ class DownloadProcessor
   end
 
   def execute &block
-    path = File.join Rails.root, 'public', 'content', '%(id)s_%(title)s.%(ext)s'
+    path = File.join Rails.root, 'public', 'content', '%(title)s.%(ext)s'
     @cmd = "#{ENV['command']} --newline --restrict-filenames -f mp4 -o '#{path}' #{content.url}"
     puts @cmd
     IO.popen(@cmd) do |stdout|
@@ -59,10 +59,15 @@ class DownloadProcessor
     file = File.open filename
     content.source_filename = filename
     content.source_file_size = file.size
+    content.human_name = fetch_human_name filename
     attachment = content.attachments.find_or_create_by(format: ext)
     attachment.file = file
     attachment.save!
     content.save!
+  end
+
+  def fetch_human_name filename
+    File.basename(filename, File.extname(filename))
   end
 
   def fetch_valid_filename
