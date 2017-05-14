@@ -41,7 +41,7 @@ class Content < ApplicationRecord
   private
 
   def remove_source_file
-    if File.exist? source_filename
+    if source_filename && File.exist?(source_filename)
       File.delete source_filename
     end
   end
