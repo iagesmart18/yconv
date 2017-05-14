@@ -24,6 +24,7 @@ gem 'aasm'
 gem "figaro"
 gem "font-awesome-rails"
 gem 'whenever', :require => false
+gem 'streamio-ffmpeg'
 
 group :development, :test do
   gem 'byebug', platform: :mri
