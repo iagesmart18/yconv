@@ -134,6 +134,7 @@
       notify: Restart Monit
       tags:
         - app
+        - monit
 
     - name: 'youtube-dl | install'
       pip:
