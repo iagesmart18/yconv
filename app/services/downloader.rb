@@ -1,8 +1,7 @@
 class Downloader
   include ActiveModel::Validations
 
-  YOUTUBE = 'youtube'
-  AVAILABLE = [ YOUTUBE ]
+  AVAILABLE = [ Content::YOUTUBE, Content::VIMEO ]
   attr_accessor :url, :response
   validate :validate_url, :validate_availability, :validate_name
 
@@ -41,7 +40,11 @@ class Downloader
     @name ||= begin
       if youtube?
         hash = Rack::Utils.parse_query URI(url).query
-        @name = hash['v']
+        @name = "youtube_#{hash['v']}"
+      end
+
+      if vimeo?
+        @name = "vimeo_#{URI(url).path[1..-1]}"
       end
     end
   end
@@ -57,6 +60,10 @@ class Downloader
   private
 
   def youtube?
-    url.include? YOUTUBE
+    url.include? Content::YOUTUBE
+  end
+
+  def vimeo?
+    url.include? Content::VIMEO
   end
 end

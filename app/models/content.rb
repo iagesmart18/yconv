@@ -5,6 +5,9 @@ class Content < ApplicationRecord
   after_destroy :remove_source_file
   default_scope { order(created_at: :desc) }
 
+  YOUTUBE = 'youtube'
+  VIMEO = 'vimeo'
+
   aasm column: :state do
     state :init, initial: true
     state :downloading
@@ -37,6 +40,14 @@ class Content < ApplicationRecord
       return attachment.file.size if attachment.file.present?
       0
     end
+  end
+
+  def youtube?
+    url.include? YOUTUBE
+  end
+
+  def vimeo?
+    url.include? VIMEO
   end
 
   private
