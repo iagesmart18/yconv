@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513215516) do
+ActiveRecord::Schema.define(version: 20170515115416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170513215516) do
     t.string   "source_filename"
     t.text     "error_msg"
     t.integer  "source_file_size"
-    t.index ["name"], name: "index_contents_on_name", using: :btree
+    t.index ["name"], name: "index_contents_on_name", unique: true, using: :btree
   end
 
 end

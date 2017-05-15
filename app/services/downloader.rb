@@ -12,7 +12,7 @@ class Downloader
 
   def perform &block
     if valid?
-      block.call content if block_given?
+        block.call content if block_given?
       @response = { content_id: content.id }
     else
       @response = { errors: errors.full_messages.join(',') }

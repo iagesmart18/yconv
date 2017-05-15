@@ -31,7 +31,8 @@ class AudioConverter
   end
 
   def remove_source_mp3
-    File.delete mp3_filename
+    return File.delete mp3_filename if File.exist? mp3_filename
+    raise "MP3 source file not exist: #{mp3_filename}"
   end
 
   def mp3_filename
