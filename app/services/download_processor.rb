@@ -76,6 +76,7 @@ class DownloadProcessor
   end
 
   def fetch_valid_filename
+    puts "Filenames: #{@filenames.join(',')}"
     @filenames = @filenames.uniq
     @filenames.find { |filename| File.exist? filename }
   end
