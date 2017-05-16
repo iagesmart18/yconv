@@ -38,14 +38,16 @@ class Downloader
 
   def name
     @name ||= begin
+      val = nil
       if youtube?
         hash = Rack::Utils.parse_query URI(url).query
-        @name = "youtube_#{hash['v']}"
+        val = "youtube_#{hash['v']}"
       end
 
       if vimeo?
-        @name = "vimeo_#{URI(url).path[1..-1]}"
+        val = "vimeo_#{URI(url).path[1..-1]}"
       end
+      val
     end
   end
 

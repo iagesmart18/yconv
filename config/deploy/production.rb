@@ -4,6 +4,7 @@ set :pty,  false
 
 
 
+
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
