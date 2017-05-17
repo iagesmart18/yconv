@@ -11,6 +11,11 @@ class HomeController < ApplicationController
     render json: downloader.response
   end
 
+  def remove
+    content = Content.find params[:id]
+    content.destroy
+  end
+
   def poll
     @contents = Content.where id: params[:ids]
   end

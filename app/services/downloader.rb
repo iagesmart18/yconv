@@ -53,8 +53,16 @@ class Downloader
 
   def content
     @content ||= begin
-      @content = Content.find_or_create_by name: name
-      @content.update! url: url
+      @content = Content.find_by_name name
+
+      if @content && @content.error_msg
+        @content.destroy
+        @content = nil
+      end
+
+      unless @content
+        @content = Content.create! name: name, url: url
+      end
       @content
     end
   end

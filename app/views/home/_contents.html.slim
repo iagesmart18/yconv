@@ -19,3 +19,6 @@
                   a.download href="#{attachment.file.url}" download=""
                     span.fa.fa-download
                     span = "[#{attachment.format}]"
+            - if content.processed?
+              a href="#" ng-click="remove($event, '#{home_remove_path(id: content.id)}')"
+                span.fa.fa-times

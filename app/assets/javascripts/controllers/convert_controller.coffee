@@ -1,4 +1,4 @@
-app.controller 'ConvertController', ['$scope', '$http', '$timeout', 'ngToast', ($scope, $http, $timeout, ngToast) ->
+app.controller 'ConvertController', ['$scope', '$http', '$timeout', 'ngToast', '$compile', ($scope, $http, $timeout, ngToast, $compile) ->
   $scope.active = false
   $scope.pollIds = []
   $scope.pollActive = false
@@ -22,7 +22,6 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', 'ngToast', (
   $scope.convert = ($event) ->
     $event.preventDefault()
     $scope.active = true
-    # $scope.video_url = 'https://www.youtube.com/watch?v=a4LVgdGN_8g'
     $http.post(
       $scope.url,
         url: $scope.video_url
@@ -47,9 +46,21 @@ app.controller 'ConvertController', ['$scope', '$http', '$timeout', 'ngToast', (
         content: data.errors
       cancelPoll()
     else
-      $('.poll').html data.poll_template
+      template = $compile(data.poll_template)($scope)
+      angular.element(document.getElementById('poll')).html template
     if data.need_continue
       cancelPoll()
       loadPromise = $timeout poll, loadTime
+
+  $scope.remove = ($event, url) ->
+    $event.preventDefault()
+    $http.post(
+      url
+    ).then( ->
+      ngToast.create
+        className: 'info'
+        content: "Video remove from cache you can redownload it"
+      angular.element(document.getElementById('poll')).html ''
+   )
 ]
 

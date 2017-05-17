@@ -1,4 +1,4 @@
-#subscribe.cta-2 ng-app="app" ng-controller="ConvertController" ng-init="init('#{home_convert_path}', '#{home_poll_path}')"
+#subscribe.cta-2 ng-controller="ConvertController" ng-init="init('#{home_convert_path}', '#{home_poll_path}')"
   toast
   .container
     .row.text-center
@@ -14,7 +14,7 @@
                   button.btn.btn-primary.submit-button type="submit" ng-click="convert($event)" Convert
     .row.text-center
       .col-md-10.col-md-offset-2
-        .poll
+        .poll#poll
 
     / .row
       / .col-md-8.col-md-offset-2

@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get 'home/service'
   get 'home/news'
 
+  post 'home/remove'
+
   mount Sidekiq::Web => '/sidekiq'
 end
