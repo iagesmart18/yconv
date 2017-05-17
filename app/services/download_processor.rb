@@ -33,7 +33,7 @@ class DownloadProcessor
 
   def options
     return '-f mp4' if content.youtube?
-    return '' if content.vimeo?
+    return "-f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'" if content.vimeo?
   end
 
   def parse_line line
