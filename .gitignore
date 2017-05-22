@@ -13,6 +13,7 @@
 /public/assets/*
 /public/system/*
 /tags
+/html
 /tmp/*
 /app/config.codekit
 # Ignore application configuration

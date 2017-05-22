@@ -163,6 +163,26 @@
         - app
         - ffmpeg
 
+    - name: 'html | create dir'
+      file: 'path={{ shared }}/html state=directory'
+      become: yes
+      become_user: '{{ user }}'
+      tags:
+        - app
+        - html
+
+    - name: 'html | copy files'
+      action: 'copy src=configs/html/{{ item }} dest={{ shared }}/html/{{ item }}'
+      become: yes
+      become_user: '{{ user }}'
+      with_items:
+        - news.html
+        - howto.html
+        - service.html
+      tags:
+        - app
+        - html
+
   roles:
     - role: rvm_io.ruby
       rvm1_rubies: ['ruby-2.3.1']
