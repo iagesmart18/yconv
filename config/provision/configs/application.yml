@@ -4,4 +4,5 @@ production:
 production:
   command: '/usr/local/bin/youtube-dl'
   max_content_size: 10737418240
+  app_name: 'Vdiio'
 

@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   post 'home/convert'
   post 'home/poll'
 
-  get 'home/howto'
-  get 'home/service'
-  get 'home/news'
+  get 'home/terms'
 
   post 'home/remove'
 

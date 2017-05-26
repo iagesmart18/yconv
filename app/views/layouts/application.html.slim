@@ -1,9 +1,9 @@
 doctype html
 html
   head
-    title My App
+    title = ENV['app_name']
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"
+    link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet"
     = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -25,9 +25,5 @@ html
               li
                 a.page-scroll href="#{root_path}" Home
               li
-                a.page-scroll href="#{home_howto_path}" HowTo
-              li
-                a.page-scroll href="#{home_service_path}" Service
-              li
-                a.page-scroll href="#{home_news_path}" News
+                a.page-scroll href="#{home_terms_path}" Terms of Service
       = yield

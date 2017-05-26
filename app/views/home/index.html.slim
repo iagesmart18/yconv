@@ -7,7 +7,7 @@
           h1.wow.fadeInDown data-wow-delay="0.1s"  Download your favorite YouTube or Vimeo videos.
           p.wow.fadeInDown data-wow-delay="0.2s"  Paste a Youtube or Vimeo link in the box below.
           .form.wow.fadeInDown data-wow-delay="0.3s"
-            = form_tag home_convert_path, method: 'post', class: 'subscribe-form wow zoomIn' do
+            = form_tag home_convert_path, method: 'post', class: 'subscribe-form wow zoomIn video-form' do
               .input-group
                 input.url-input.form-control autocomplete="off" name="email" placeholder="https://www.youtube.com/watch?v=qs3XoTc_R9o" type="text" ng-model="video_url"
                 span.input-group-btn
@@ -28,12 +28,12 @@
         .footer-inner
           .footer-img
             h1
-              | Pilot
+              | #{ENV['app_name']}
               sup TM
             p
-              | Cu qui probo malorum saperet. Ne admodum apeirian iracundia usu, eam cu agam ludus,
-              | eum munere accusam molestie ut. Alienum percipitur ne est, pri quando iriure ad.
-            p &copy; 2017 YDirection Themes by IOThemes
+              |The best, free, YouTube & Vimeo to mp3/mp4 converter online. Use it to download your favorite mp4 videos and mp3 tracks directly from your smartphone or computer. YouTube & Vimeo to mp3 and mp4 conversion is offered for free, doesn't require a registration or the
+              |download of any external software: you just have to paste the full url of the Youtube or Vimeo video you're interested in, and click the convert button to start converting to mp4 first then mp3. 
+            p &copy; 1999 - 2017
         .footer-social
           / ul
             / li
