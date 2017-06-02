@@ -158,6 +158,10 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
     pg (0.20.0)
+    piwik_analytics (1.0.2)
+      actionpack
+      activesupport
+      rails (>= 3.0.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -309,6 +313,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   paperclip (~> 5.0.0)
   pg (~> 0.18)
+  piwik_analytics (~> 1.0.1)
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.2)

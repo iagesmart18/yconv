@@ -1,0 +1,37 @@
+---
+- hosts: piwik
+  remote_user: root
+  gather_facts: no
+
+  vars:
+    app_root: /var/www/html
+
+  tasks:
+    - name: install dependencies
+      action: 'apt pkg={{ item }}'
+      with_items:
+        - 'unzip'
+        - 'build-essential'
+        - 'libssl-dev'
+        - 'libyaml-dev'
+        - 'libreadline6-dev'
+        - 'zlib1g-dev'
+        - 'libcurl4-openssl-dev'
+        - 'git'
+        - 'nodejs'
+        - 'htop'
+        - 'zsh'
+        - 'python-pip'
+        - 'python-setuptools'
+        - 'php-mbstring'
+        - 'php-xml'
+
+    - name: 'piwik | create download dir'
+      file: path=/root/piwik_tmp/ state=directory
+
+    - name: 'piwik | download piwik'
+      raw: cd /root/piwik_tmp && wget https://builds.piwik.org/piwik.zip && unzip piwik.zip
+
+    - name: 'piwik | install piwik'
+      raw: cp -a /root/piwik_tmp/piwik/. {{ app_root }}
+

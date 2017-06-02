@@ -26,6 +26,7 @@ gem "figaro"
 gem "font-awesome-rails"
 gem 'whenever', :require => false
 gem 'streamio-ffmpeg'
+gem 'piwik_analytics', '~> 1.0.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -9,6 +9,7 @@ html
     = csrf_meta_tags
 
   body
+    = piwik_tracking_tag
     .wrapper
       nav.navbar.navbar-default.navbar-fixed-top
         .container
@@ -19,7 +20,7 @@ html
               span.icon-bar
               span.icon-bar
             a.navbar-brand.page-scroll href="#main"
-              = image_tag 'pi-logo.png', alt: 'logo', width: 40
+              = image_tag 'logo_medium.jpg', alt: 'logo', width: 50
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             ul.nav.navbar-nav
               li
