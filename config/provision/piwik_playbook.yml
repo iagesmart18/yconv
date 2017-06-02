@@ -5,6 +5,7 @@
 
   vars:
     app_root: /var/www/html
+    cert_path: /etc/letsencrypt/live/vdiio.com/
 
   tasks:
     - name: install dependencies
@@ -29,9 +30,9 @@
     - name: 'piwik | create download dir'
       file: path=/root/piwik_tmp/ state=directory
 
-    - name: 'piwik | download piwik'
-      raw: cd /root/piwik_tmp && wget https://builds.piwik.org/piwik.zip && unzip piwik.zip
+    # - name: 'piwik | download piwik'
+      # raw: cd /root/piwik_tmp && wget https://builds.piwik.org/piwik.zip && unzip piwik.zip
 
-    - name: 'piwik | install piwik'
-      raw: cp -a /root/piwik_tmp/piwik/. {{ app_root }}
+    # - name: 'piwik | install piwik'
+      # raw: cp -a /root/piwik_tmp/piwik/. {{ app_root }}
 
